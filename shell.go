@@ -410,6 +410,27 @@ func (s *Shell) FindPeer(peer string) (*PeerInfo, error) {
 	return &str.Responses[0], nil
 }
 
+
+func (s *Shell) ShowPeers() (string, error) {
+	resp, err := s.newRequest(context.Background(), "swarm/peers").Send(s.httpcli)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Close()
+
+	if resp.Error != nil {
+		return "", resp.Error
+	}
+
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(resp.Output)
+	resultStr := buf.String()
+
+	fmt.Printf(resultStr)
+
+	return resultStr, nil
+}
+
 func (s *Shell) Refs(hash string, recursive bool) (<-chan string, error) {
 	req := s.newRequest(context.Background(), "refs", hash)
 	if recursive {

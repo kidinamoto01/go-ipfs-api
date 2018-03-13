@@ -145,6 +145,27 @@ type object struct {
 	Hash string
 }
 
+
+func (s *Shell) AddFile(input string)  (string, error){
+
+
+	if input != "" {
+		content, err := ioutil.ReadFile(input)
+
+		//fmt.Printf("File contents: %s", content)
+
+		mhash, err := s.Add(bytes.NewBuffer(content))
+
+		return mhash,err
+		
+	}else{
+		return  "", fmt.Errorf("Empty Path")
+	}
+
+
+}
+
+
 // Add a file to ipfs from the given reader, returns the hash of the added file
 func (s *Shell) Add(r io.Reader) (string, error) {
 	return s.AddWithOpts(r, true, false)

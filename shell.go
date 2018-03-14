@@ -157,7 +157,7 @@ func (s *Shell) AddFile(input string)  (string, error){
 		mhash, err := s.Add(bytes.NewBuffer(content))
 
 		return mhash,err
-		
+
 	}else{
 		return  "", fmt.Errorf("Empty Path")
 	}

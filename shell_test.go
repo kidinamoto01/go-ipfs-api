@@ -26,6 +26,16 @@ func TestAdd(t *testing.T) {
 }
 
 
+func TestAddPic(t *testing.T) {
+	is := is.New(t)
+	s := NewShell(shellUrl)
+
+	mhash, err := s.AddFile("./testdata/kheZJqhFuCqcsEDoTSgHCLXm.png")
+	is.Nil(err)
+	is.Equal(mhash, "QmcujFkdR5byeEAAU5AJEPG2pLjG12uFkXKBAQTbrs3zF3")
+}
+
+
 func TestFindPeer(t *testing.T){
 	is := is.New(t)
 	s := NewShell(shellUrl)

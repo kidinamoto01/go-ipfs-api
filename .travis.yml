@@ -1,13 +1,13 @@
 sudo: required
 
-#deploy:
-#  provider: pages
-#  skip-cleanup: true
-#  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
-#  keep-history: true
-#  on:
-#    branch: master
-#
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  on:
+    branch: master
+
 
 language: go
 
@@ -36,10 +36,10 @@ install:
   - go get -t -v ./...
 
 script:
-#  - go test -v -covermode=count -coverprofile=coverage.out
+  - go test -v -covermode=count -coverprofile=coverage.out
   - $GOPATH/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
 
 
 # Tell Travis CI to monitor only 'master' branch
-branches:
-  only: master
+#branches:
+#  only: master

@@ -15,8 +15,8 @@ go:
   - 1.8
   - tip
 
-env:
-  - IPFS_PATH=/tmp/ipfs
+#env:
+#  - IPFS_PATH=/tmp/ipfs
 
 matrix:
   allow_failures:
@@ -25,10 +25,10 @@ matrix:
 services:
   - docker
 
-before_install:
-- docker pull ipfs/go-ipfs:master
-- mkdir /tmp/ipfs && chmod 0777 /tmp/ipfs
-- docker run -d -v /tmp/ipfs:/data/ipfs -p 8080:8080 -p 4001:4001 -p 5001:5001 ipfs/go-ipfs:master --enable-pubsub-experiment
+#before_install:
+#- docker pull ipfs/go-ipfs:master
+#- mkdir /tmp/ipfs && chmod 0777 /tmp/ipfs
+#- docker run -d -v /tmp/ipfs:/data/ipfs -p 8080:8080 -p 4001:4001 -p 5001:5001 ipfs/go-ipfs:master --enable-pubsub-experiment
 
 install:
   - go get -t -v ./...
@@ -36,3 +36,6 @@ install:
 script:
   - go test -v -covermode=count -coverprofile=coverage.out
   - goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+# Tell Travis CI to monitor only 'master' branch
+branches:
+  only: master

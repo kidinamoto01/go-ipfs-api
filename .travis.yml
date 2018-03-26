@@ -33,9 +33,10 @@ before_install:
 install:
   - go get -t -v ./...
 
-#script:
+script:
 #  - go test -v -covermode=count -coverprofile=coverage.out
-#  - goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+  - $GOPATH/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+
 # Tell Travis CI to monitor only 'master' branch
 branches:
   only: master

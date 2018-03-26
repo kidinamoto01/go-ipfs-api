@@ -1,0 +1,45 @@
+sudo: required
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  on:
+    branch: master
+
+
+language: go
+
+go:
+  - 1.8
+  - tip
+
+#env:
+#  - IPFS_PATH=/tmp/ipfs
+
+matrix:
+  allow_failures:
+    - go: tip
+
+services:
+  - docker
+
+before_install:
+- docker pull ipfs/go-ipfs:master
+- mkdir /tmp/ipfs && chmod 0777 /tmp/ipfs
+- docker run -d -v /tmp/ipfs:/data/ipfs -p 8080:8080 -p 4001:4001 -p 5001:5001 ipfs/go-ipfs:master --enable-pubsub-experiment
+
+install:
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/mattn/goveralls
+  - go get -t -v ./...
+
+script:
+  - go test -v -covermode=count -coverprofile=coverage.out
+  - $GOPATH/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN || true
+
+
+# Tell Travis CI to monitor only 'master' branch
+#branches:
+#  only: master

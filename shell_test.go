@@ -2,11 +2,11 @@ package shell
 
 import (
 	"bytes"
-	//"crypto/md5"
+	"crypto/md5"
 	"fmt"
-	//"io"
+	"io"
 	"testing"
-	//"time"
+	"time"
 
 	"github.com/cheekybits/is"
 )

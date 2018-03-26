@@ -31,6 +31,8 @@ before_install:
 - docker run -d -v /tmp/ipfs:/data/ipfs -p 8080:8080 -p 4001:4001 -p 5001:5001 ipfs/go-ipfs:master --enable-pubsub-experiment
 
 install:
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/mattn/goveralls
   - go get -t -v ./...
 
 script:

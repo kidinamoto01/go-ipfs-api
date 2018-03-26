@@ -23,3 +23,6 @@ before_install:
 
 install:
   - go get -t -v ./...
+
+script:
+  - goveralls -repotoken nNeZ1KSx3OllVAGAqlVGyXh4vEqkVFHkH

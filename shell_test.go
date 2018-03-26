@@ -58,16 +58,16 @@ func TestAddDir(t *testing.T) {
 	is.Equal(cid, "QmZbygmwSqT3FoZM2gTFAXNAbbpEADbKuaR1cdieEzJfTZ")
 }
 
-func TestLocalShell(t *testing.T) {
-	is := is.New(t)
-	s := NewLocalShell()
-	is.NotNil(s)
-
-	h, err := s.Add(bytes.NewBufferString("Hello IPFS Shell tests"))
-	is.Nil(err)
-	fmt.Println(h)
-	//is.Equal(mhash, "QmUfZ9rAdhV5ioBzXKdUTh2ZNsz9bzbkaLVyQ8uc8pj21F")
-}
+//func TestLocalShell(t *testing.T) {
+//	is := is.New(t)
+//	s := NewLocalShell()
+//	is.NotNil(s)
+//
+//	h, err := s.Add(bytes.NewBufferString("Hello IPFS Shell tests"))
+//	is.Nil(err)
+//	fmt.Println(h)
+//	//is.Equal(mhash, "QmUfZ9rAdhV5ioBzXKdUTh2ZNsz9bzbkaLVyQ8uc8pj21F")
+//}
 
 func TestCat(t *testing.T) {
 	is := is.New(t)
